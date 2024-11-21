@@ -1,0 +1,99 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
+
+
+
+namespace _2024._11._21
+{
+    class resztvevo
+    {
+        public string nev, iskolaja, telepules, szakmacsoport;
+        public int helyezes, eredmeny;
+
+        public resztvevo(string egysor)
+        {
+            string[] darabok = egysor.Trim().Split('\t');
+            helyezes = Convert.ToInt32(darabok[0]);
+            nev = darabok[1];
+            iskolaja = darabok[2];
+            telepules = darabok[3];
+            eredmeny = Convert.ToInt32(darabok[4]);
+            szakmacsoport = darabok[5];
+
+
+        }
+
+    }
+    class Program
+    {
+        static List<resztvevo> resztvevok = new List<resztvevo>();
+
+        static void Main(string[] args)
+        {
+            f1();
+            f2();
+            f3();
+            f4();
+            f5();
+            Console.WriteLine("Üsd le az ENTERT");
+            Console.ReadLine();
+        }
+        static void f1()
+        {
+            string[] beolvas = File.ReadAllLines("eredmenyek.txt", Encoding.Default);
+            foreach (var item in beolvas)
+            {
+                resztvevok.Add(new resztvevo(item));
+            }
+
+
+        }
+        static void f2()
+        {
+            Console.WriteLine($"2. Feladat: Versenyen indulók száma: {resztvevok.Count}");
+        }
+        static void f3()
+        {
+            int informatika = 0;
+            int gepesz = 0;
+            int kornyezetvedelem = 0;
+
+            foreach (var item in resztvevok)
+            {
+                if (item.szakmacsoport == "gépész")
+                {
+                    gepesz++;
+                }
+                if (item.szakmacsoport == "környezetvédelem")
+                {
+                    kornyezetvedelem++;
+                }
+                if (item.szakmacsoport == "informatika")
+                {
+                    informatika++;
+                }
+            }
+            Console.WriteLine($"3. Feladat: A környezetvedelem versenyén ennyien vettek részt:{kornyezetvedelem}.");
+            Console.WriteLine($"A gépész versenyén ennyien vettek részt:{gepesz}.");
+            Console.WriteLine($"Az informatikai versenyén ennyien vettek részt:{informatika}.");
+        }
+        static void f4()
+        {
+        
+        }
+        static void f5()
+        {
+            string nev = "Ábrahám";
+            string iskolaja = "Bánki";
+        
+
+
+        }
+    }
+
+}
